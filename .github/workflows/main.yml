@@ -1,0 +1,34 @@
+name: C/C++ CI x86
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    env:
+      MSYS2_ARCH: i686
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repository:   CroatiaControlLtd/asterix.git
+        path: main      
+      
+    - uses: eine/setup-msys2@v0      
+      with:
+        update: true
+        msystem: MINGW32
+                
+    - name: Install MSYS2 Dependencies
+      run:  msys2do pacman --noconfirm -S --needed mingw-w64-i686-gcc mingw-w64-i686-expat mingw-w64-i686-crt make
+
+    - name: cd
+      run:  msys2do cd main/asterix/src
+
+    - name: make
+      run:  msys2do make install
+      
+    - uses: actions/upload-artifact@v1
+      with:
+          name: artifact
+          path: . 
