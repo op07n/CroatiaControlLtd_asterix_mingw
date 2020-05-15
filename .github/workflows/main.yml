@@ -22,8 +22,11 @@ jobs:
     - name: Install MSYS2 Dependencies
       run:  msys2do pacman --noconfirm -S --needed mingw-w64-i686-gcc mingw-w64-i686-expat mingw-w64-i686-cmake mingw-w64-i686-crt make
 
+    - name: cd main
+      run:  msys2do 'cd main'
+
     - name: cmake
-      run:  msys2do 'cd main && cmake . -G "MinGW Makefiles"'
+      run:  msys2do 'cmake . -G "MinGW Makefiles"'
       
     - name: make
       run:  msys2do make    
