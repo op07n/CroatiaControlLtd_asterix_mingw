@@ -20,15 +20,19 @@ jobs:
         msystem: MINGW32
                 
     - name: Install MSYS2 Dependencies
-      run:  msys2do pacman --noconfirm -S --needed mingw-w64-i686-gcc mingw-w64-i686-expat mingw-w64-i686-crt make
+      run:  msys2do pacman --noconfirm -S --needed mingw-w64-i686-gcc mingw-w64-i686-expat mingw-w64-i686-cmake mingw-w64-i686-crt make
 
     - name: cd
-      run:  msys2do cd ./main/src/asterix
+      run:  msys2do cd ./main
 
-    - name: make
-      run:  msys2do make install
+    - name: cmake
+      run:  msys2do cmake .
       
+    - name: make
+      run:  msys2do make    
+        
     - uses: actions/upload-artifact@v1
       with:
           name: artifact
           path: . 
+ 
