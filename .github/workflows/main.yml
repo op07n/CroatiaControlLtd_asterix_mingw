@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         repository:   CroatiaControlLtd/asterix.git
-        path: main      
+        path: .      
       
     - uses: eine/setup-msys2@v0      
       with:
@@ -21,9 +21,6 @@ jobs:
                 
     - name: Install MSYS2 Dependencies
       run:  msys2do pacman --noconfirm -S --needed mingw-w64-i686-gcc mingw-w64-i686-expat mingw-w64-i686-cmake mingw-w64-i686-crt make
-
-    - name: cd
-      run:  msys2do cd ./main
 
     - name: cmake
       run:  msys2do cmake .
