@@ -23,7 +23,7 @@ jobs:
       run:  msys2do pacman --noconfirm -S --needed mingw-w64-i686-gcc mingw-w64-i686-expat mingw-w64-i686-crt make
 
     - name: cd
-      run:  msys2do cd main/asterix/src
+      run:  msys2do ls -R
 
     - name: make
       run:  msys2do make install
